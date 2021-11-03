@@ -24,4 +24,12 @@ categoriesRoutes.get('/', (req, res) => {
     return res.json(all);
 });
 
+categoriesRoutes.delete('/', (req, res) => {
+    return res.status(200).send();
+});
+
+categoriesRoutes.put('/', (req, res) => {
+    return res.status(200).send();
+});
+
 export { categoriesRoutes };
