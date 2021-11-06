@@ -1,0 +1,12 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RentalX Documentation",
+        "description": "This is an API for car rent",
+        "version": "1.0.0",
+        "contact": {
+            "email": "subarusakaguchi@yahoo.com.br",
+            "linkedin": "https://linkedin.com/in/subarusakaguchi"
+        }
+    }
+}
