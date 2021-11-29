@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, request } from 'express';
 import { verify } from 'jsonwebtoken';
 
 import { AppError } from '../errors/AppError';
@@ -22,18 +22,22 @@ export async function ensureAuthenticated(
     const [, token] = authHeader.split(' ');
 
     try {
-        const { sub: id } = verify(
+        const { sub: user_id } = verify(
             token,
             'd6d8746c1bc2f46df24ce4aa010c6e76',
         ) as IPayload;
 
         const usersRepository = new UsersRepository();
 
-        const user = await usersRepository.findById(id);
+        const user = await usersRepository.findById(user_id);
 
         if (!user) {
             throw new AppError('User does not Exists', 401);
         }
+
+        req.user = {
+            id: user_id,
+        };
 
         next();
     } catch (error) {
